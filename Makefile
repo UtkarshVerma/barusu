@@ -4,7 +4,7 @@ PREFIX = /usr/local
 CFLAGS ?= -g -std=c17 -Wall -Wpedantic -Wno-unused-parameter
 LDLIBS = -lrt
 
-DEPENDENCIES = glesv2 egl
+DEPENDENCIES = glesv2 egl wayland-egl wayland-cursor
 LDLIBS += $(shell pkg-config $(DEPENDENCIES) --libs)
 
 CFLAGS += $(shell pkg-config wayland-client --cflags)
@@ -17,7 +17,7 @@ PROTOCOL_HEADERS = $(addsuffix -client-protocol.h, $(PROTOCOLS))
 PROTOCOL_SOURCES = $(addsuffix -protocol.c, $(PROTOCOLS))
 PROTOCOL_OBJECTS = $(addsuffix -protocol.o, $(PROTOCOLS))
 
-OBJECTS = main.o $(PROTOCOL_OBJECTS)
+OBJECTS = main.o egl.o $(PROTOCOL_OBJECTS)
 BIN = barusu
 
 all: $(PROTOCOL_HEADERS) $(PROTOCOL_SOURCES) $(BIN)

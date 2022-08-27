@@ -1,2 +1,4 @@
 *.o
+*-client-protocol.h
+*-protocol.c
 barusu
